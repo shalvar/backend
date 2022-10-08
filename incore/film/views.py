@@ -10,6 +10,13 @@ from rest_framework.exceptions import NotFound
 class FilmViewSet(ModelViewSet):
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
+    
+    @action(methods=['GET'], detail=False, permission_classes=[IsAuthenticated], url_path='film')
+    def get_favorites(self, request):
+        user = request.user
+        films = Film.objects.filter(user=user)
+        data = FilmSerializer(instance=films, many=True).data
+        return Response(data)    
 
     @action(methods=['POST'], detail=True, permission_classes=[IsAuthenticated], url_path='toggle-favorite')
     def toggle_favorite(self, request, pk=None):

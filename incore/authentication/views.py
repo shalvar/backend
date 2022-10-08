@@ -4,7 +4,6 @@ from authentication.models import User
 from authentication.serializers import UserSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 
 class UserViewSet(ModelViewSet):
@@ -38,12 +37,6 @@ class UserViewSet(ModelViewSet):
             raise AuthenticationFailed({'error': 'user not activated'})
 
        
-        refresh = RefreshToken.for_user(user)
-        response = Response()
-        response.set_cookie('refresh', str(refresh))
-        response.data = {'access': str(refresh.access_token)}
-      
-        return response
 
     @action(methods=['GET'], detail=False, permission_classes=[IsAuthenticated], url_path='me')
     def get_user(self, request):
