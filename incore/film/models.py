@@ -9,8 +9,7 @@ class Film(models.Model):
     title = models.CharField(verbose_name='Название',max_length=255)
     description = models.TextField(verbose_name='Описание')
     img = models.ImageField(verbose_name='Фото',upload_to='films')
-    timetable = models.ManyToManyField(verbose_name='Расписание ',to=Timetable,related_name='timetables')
-    place = models.ManyToManyField(verbose_name='Кинотеатр',to=Place,related_name='places')
+    
     
     def __str__(self):
         return self.title
