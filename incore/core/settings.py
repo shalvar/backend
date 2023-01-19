@@ -39,6 +39,7 @@ CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,15 +51,22 @@ INSTALLED_APPS = [
     'concert',
     'main',
     'timetable',
+    'genre',
+    'createDate',
     'place',
     'rest_framework',
-    'corsheaders'
+    'django_filters',
+    'import_export',
+    'simple_history',
+    'corsheaders',
+    
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,6 +95,8 @@ TEMPLATES = [
     },
 ]
 
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -132,11 +142,33 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+gettext = lambda s: s
+
+LANGUAGES = (
+    ('ru', gettext(u'Русский')),
+    ('en', gettext(u'English')),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_TRANSLATION_REGISTRY = 'MYPROJECT.translation'
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend'
+        ),
+    
+}   
+
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
