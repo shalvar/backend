@@ -1,7 +1,7 @@
 from django.db import models
 
 class CreateDate(models.Model):
-    date = models.CharField(verbose_name='Дата выхода',max_length=4)
+    date = models.IntegerField(verbose_name='Дата выхода')
     
     def __str__(self):
         return self.date

@@ -2,7 +2,7 @@ from django.db import models
 from authentication.models import User
 from place.models import Place
 from timetable.models import Timetable
-from createDate.models import CreateDate
+# from createDate.models import CreateDate
 from genre.models import Genre
 
 
@@ -11,7 +11,7 @@ class Concert(models.Model):
     img = models.ImageField(verbose_name='Фото',upload_to='concerts')
     timetable = models.ManyToManyField(verbose_name='Расписание ',to=Timetable,related_name='timetablesForConterts')
     genre = models.ManyToManyField(verbose_name='Жанр',to=Genre,related_name='genresForConterts')
-    createDate = models.CharField(verbose_name='Дата создания',max_length=4)
+    createDate = models.IntegerField(verbose_name='Дата создания',max_length=4)
     place = models.ManyToManyField(verbose_name='Концертный зал',to=Place,related_name='placesForConterts')
     
     def __str__(self):
