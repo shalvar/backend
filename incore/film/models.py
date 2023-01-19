@@ -2,7 +2,7 @@ from django.db import models
 from place.models import Place
 from timetable.models import Timetable
 from genre.models import Genre
-# from simple_history.models import HistoricalRecords
+from simple_history.models import HistoricalRecords
 from rest_framework import serializers
 
 
@@ -16,7 +16,7 @@ class Film(models.Model):
     genre = models.ManyToManyField(verbose_name='Жанр',to=Genre,related_name='genres')
     createDate = models.CharField(verbose_name='Дата создания',max_length=4,)
     place = models.ManyToManyField(verbose_name='Кинотеатр',to=Place,related_name='places')
-    # history = HistoricalRecords()
+    history = HistoricalRecords()
     
     
     def __str__(self):
