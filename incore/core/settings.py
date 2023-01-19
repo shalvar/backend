@@ -47,12 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'film',
+    'film',# вся реализация пнуктов в фильмах
     'concert',
     'main',
     'timetable',
     'genre',
-    'createDate',
+    'createDate', # валидация
     'place',
     'rest_framework',
     'django_filters',
