@@ -39,21 +39,21 @@ class FilmViewSet(ModelViewSet):
     @action(methods=['GET'], detail=False, url_path='first decade')
     def get_Fdecade(self, films):
             films = Film.objects.filter( Q(createDate__startswith='200') | Q(createDate__endswith='10'))
-            data = CreateDateSerializer(instance=films, many=True).data
+            data = FilmSerializer(instance=films, many=True).data
             return Response(data)
         
     @action(methods=['GET'], detail=False, url_path='second decade')
     
     def get_Sdecade(self, films):
             films = Film.objects.filter( Q(createDate__startswith='201') | Q(createDate__endswith='20'))
-            data = CreateDateSerializer(instance=films, many=True).data
+            data = FilmSerializer(instance=films, many=True).data
             return Response(data)
         
     @action(methods=['GET'], detail=False, url_path='third decade')
     
     def get_Tdecade(self, films):
             films = Film.objects.filter( Q(createDate__startswith='202') | Q(createDate__endswith='30'))
-            data = CreateDateSerializer(instance=films, many=True).data
+            data = FilmSerializer(instance=films, many=True).data
             return Response(data)
         
 def initial(self, request, *args, **kwargs ):
