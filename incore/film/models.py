@@ -3,6 +3,7 @@ from place.models import Place
 from timetable.models import Timetable
 from genre.models import Genre
 
+
 from simple_history.models import HistoricalRecords
 
 

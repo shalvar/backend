@@ -14,7 +14,7 @@ class FilmSerializer(serializers.ModelSerializer):
     def createDateVal(self, value):
         if value (r'^\d{4}$'):
             raise ValidationError(
-                ('%(value)s is not an even number'),
+                ('%(value)s Еще рано'),
              params={'value': value},
         )
 
